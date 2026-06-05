@@ -1,26 +1,32 @@
 from sklearn.model_selection import train_test_split
 
-def split_data(df):
 
-    X = df[
-        [
-            'metric1',
-            'metric2',
-            'metric3',
-            'metric4',
-            'metric5',
-            'metric6',
-            'metric7',
-            'metric8',
-            'metric9'
-        ]
+def prepare_features(df):
+
+    feature_cols = [
+        "metric1",
+        "metric2",
+        "metric3",
+        "metric4",
+        "metric5",
+        "metric6",
+        "metric7",
+        "metric8",
+        "metric9"
     ]
 
-    y = df['failure']
+    X = df[feature_cols]
+
+    y = df["failure"]
+
+    return X, y
+
+
+def split_data(X, y):
 
     return train_test_split(
         X,
         y,
-        test_size=0.2,
+        test_size=0.20,
         random_state=42
     )
